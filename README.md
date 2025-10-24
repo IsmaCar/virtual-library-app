@@ -25,37 +25,7 @@ Una aplicación web para gestionar tu biblioteca personal virtual, donde puedes 
 
 ### DevOps
 - **Docker** para contenedores
-- **nginx** como proxy reverso
-
-## 📦 Instalación
-
-1. Clona el repositorio
-```bash
-git clone https://github.com/IsmaCar/virtual-library-app.git
-cd virtual-library-app
-```
-
-2. Instala las dependencias del backend
-```bash
-cd backend
-pnpm install
-```
-
-3. Configura las variables de entorno
-```bash
-cp .env.example .env
-# Edita el archivo .env con tus credenciales de MySQL
-```
-
-4. Crea la base de datos
-```bash
-node scripts/setup-db.js
-```
-
-5. Inicia el servidor de desarrollo
-```bash
-pnpm run dev
-```
+- **nginx** como proxy inverso
 
 ## 🎯 Estado del Proyecto
 
@@ -80,9 +50,8 @@ Este proyecto está en **desarrollo activo** como parte de mi aprendizaje de des
 - [ ] Dockerización completa
 
 ## 📧 Contacto
-
-**Ismael Carballo Martín** - Desarrollador en formación
+**carballomartinismael@gmail.com** 
 
 ---
 
-*Proyecto educativo desarrollado para aprender tecnologías web modernas.*
+*Proyecto desarrollado para aprender tecnologías web modernas.*
