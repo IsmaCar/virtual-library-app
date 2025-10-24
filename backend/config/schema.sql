@@ -1,0 +1,45 @@
+CREATE TABLE users (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reviews (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id VARCHAR(50) NOT NULL,
+    comment VARCHAR(255) NOT NULL,
+    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE favorites (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE readLater (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE user_books (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id VARCHAR(50) NOT NULL,
+    status ENUM('reading', 'completed') NOT NULL,
+    started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    finished_at TIMESTAMP NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
