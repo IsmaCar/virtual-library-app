@@ -23,7 +23,7 @@ Una aplicación web para gestionar tu biblioteca personal virtual, donde puedes 
 - **React.js** (próximamente)
 - **CSS moderno** con diseño responsivo
 
-### DevOps
+### Despliegue
 - **Docker** para contenedores
 - **nginx** como proxy inverso
 
