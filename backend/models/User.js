@@ -1,5 +1,5 @@
 const pool = require('../config/database.js')
-// metodos create(), findByUsername(), update(), delete()
+// metodos create(), findByUsername(), update()
 class User {
     static async create(userData) {
         const { username, email, password } = userData
@@ -22,8 +22,19 @@ class User {
         const value = [username]
 
         return new Promise((resolve, reject) => {
-            pool.query(sql, value, (error, result) => {
-                error ? reject(error) : resolve(result[0] || null)
+            pool.query(sql, value, (error, results) => {
+                error ? reject(error) : resolve(results[0] || null)
+            })
+        })
+    }
+
+    static async update(userID, username) {
+        const sql = 'UPDATE users SET username = ? WHERE id = ?'
+        const values = [username, userID]
+
+        return new Promise((resolve, reject) => {
+            pool.query(sql, values, (error, results) => {
+                error ? reject(error) : resolve({success: true, message: 'Usuario actualizado correctamente'})
             })
         })
     }
