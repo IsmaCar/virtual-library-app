@@ -49,9 +49,6 @@ Este proyecto está en **desarrollo activo** como parte de mi aprendizaje de des
 - [ ] Sistema de autenticación JWT
 - [ ] Dockerización completa
 
-## 📧 Contacto
-**carballomartinismael@gmail.com** 
-
 ---
 
 *Proyecto desarrollado para aprender tecnologías web modernas.*
