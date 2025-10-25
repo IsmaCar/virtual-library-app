@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
+const router = require('./routes/userRouter.js')
 
 //Config dotenv
 dotenv.config()
@@ -11,8 +12,9 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
+app.use('api/users', router)
 app.get('/', (req, res) => {
-    res.send('hola mundo')
+    res.send('Backend responde')
 })
 
 app.listen(PORT, () => {
