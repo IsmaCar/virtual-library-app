@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const router = require('./routes/userRouter.js')
+const userRouter = require('./routes/userRouter.js')
 
 //Config dotenv
 dotenv.config()
@@ -12,7 +12,9 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-app.use('api/users', router)
+app.use('/api/users', userRouter)
+
+//Test servidor activo
 app.get('/', (req, res) => {
     res.send('Backend responde')
 })

@@ -1,6 +1,8 @@
 const pool = require('../config/database.js')
-// metodos create(), findByUsername(), update()
+
+//CLase User
 class User {
+    // Función para registrar usuarios
     static async create(userData) {
         const { username, email, password } = userData
         const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)'
@@ -11,12 +13,24 @@ class User {
                 error ? reject(error) : resolve({
                     id: results.insertId,
                     username,
-                    email
+                    email                    
                 })
             })
         })
     }
+    // Función para buscar usuario por email (Login)
+    static async findByEmail(email) {
+        const sql = 'SELECT * FROM USERS WHERE email = ?'
+        const value = [email]
 
+        return new Promise((resolve, reject) => {
+            pool.query(sql, value, (error, results) => {
+                error ? reject(error) : resolve(results[0] || null)
+        })
+        })
+
+    }
+    // Función para buscar usuario por nombre (buscar perfiles)
     static async findByUsername(username) {
         const sql = 'SELECT * FROM users WHERE username = ?'
         const value = [username]
@@ -27,17 +41,17 @@ class User {
             })
         })
     }
-
+    // Función para actualizar nombre de usuario
     static async update(userID, username) {
         const sql = 'UPDATE users SET username = ? WHERE id = ?'
         const values = [username, userID]
 
         return new Promise((resolve, reject) => {
             pool.query(sql, values, (error, results) => {
-                error ? reject(error) : resolve({success: true, message: 'Usuario actualizado correctamente'})
+                error ? reject(error) : resolve({ success: true, message: 'Usuario actualizado correctamente' })
             })
         })
     }
 }
 
-module.exports = {User}
+module.exports = User
