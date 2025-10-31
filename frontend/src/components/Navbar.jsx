@@ -5,10 +5,10 @@ function Navbar() {
     return (
         <nav className="bg-neutral-800 flex justify-between items-center p-4 shadow-xl">
             {/* Logo de la aplicación */}
-            <section>
+            <section className='ml-3'>
                 <Link to="/">
-                    <img src="/imgs/logo.png" alt="library app" className="h-12 ml-4" />
-                    <p className='text-white font-bold'>Library App</p>
+                    <img src="/imgs/logo.png" alt="library app" className="h-12 ml-5" />
+                    <p className='text-white font-bold text-size '>Library App</p>
                 </Link>
             </section>
         </nav>
