@@ -1,8 +1,10 @@
 import React from 'react'
-
+import BookSearch from '../components/BookSearch'
 function Home () {
   return (
-    <div>Home</div>
+    <div>
+      <BookSearch/>
+    </div>
   )
 }
 
