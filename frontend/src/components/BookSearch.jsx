@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { getCoverUrl, formatAuthors, formatYear } from '../utils/bookUtils'
+import { Link } from 'react-router-dom'
 const API_BOOKS_URL = import.meta.env.VITE_OPENLIBRARY_URL
 
 function BookSearch() {
+    /* Estados:
+    1.Guardar busqueda form
+    2. Guardar lista de libros que coincidan con la busqueda
+    3. Estado para cambiar de página*/
     const [formData, setFormData] = useState({ query: "" })
     const [books, setBooks] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-
+    
+    // Lógica para pasar de página
     const booksPerPage = 9
     const startIndex = (currentPage - 1) * booksPerPage
     const endIndex = startIndex + booksPerPage
@@ -15,20 +21,22 @@ function BookSearch() {
 
     const totalPages = Math.ceil(books.length / booksPerPage)
 
+    // Guardado de palabras del form
     const handleChange = (e) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    // Busqueda de los libros
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`${API_BOOKS_URL}?q=${formData.query}`)
+            const response = await fetch(`${API_BOOKS_URL}/search.json?q=${formData.query}`)
             if (!response.ok)
                 throw new Error('Error al encontrar el libro o autor')
 
             const data = await response.json()
             setBooks(data.docs)
-
+            setCurrentPage(1)
         } catch (err) {
             console.error('Error en try/catch:', err)
         }
@@ -79,7 +87,11 @@ function BookSearch() {
                                     <p className='text-gray-500 mb-1'>
                                         Año: {formatYear(book.first_publish_year)}
                                     </p>
-
+                                    <Link to={`/book/${book.key.split('/').pop()}`}>
+                                        <p>
+                                        Vista detallada
+                                        </p>
+                                    </Link>
                                 </div>
                             ))}
                         </article>
